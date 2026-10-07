@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CreativeFlow · Links</title>
+<meta name="description" content="CreativeFlow: plan, script and grow your channel, all in one place. Open the app, download it, or join the community.">
+<meta property="og:title" content="CreativeFlow">
+<meta property="og:description" content="Plan, script and grow your channel, all in one place.">
+<meta property="og:image" content="https://links.creativeflow.media/logo.png">
+<meta name="theme-color" content="#0A0712">
+<link rel="icon" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<style>
+  :root {
+    --bg: #0A0712; --card: rgba(255, 255, 255, 0.05); --card-hover: rgba(255, 255, 255, 0.09); --border: rgba(255, 255, 255, 0.1);
+    --text: #F5F2FB; --muted: #B3ABC9; --accent: #8358FF; --accent-2: #5865F2;
+    --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    font-family: var(--font); color: var(--text); -webkit-font-smoothing: antialiased;
+    background:
+      radial-gradient(80% 50% at 50% -10%, rgba(131, 88, 255, 0.35), transparent 70%),
+      radial-gradient(60% 40% at 100% 100%, rgba(88, 101, 242, 0.18), transparent 70%),
+      radial-gradient(50% 35% at 0% 80%, rgba(235, 69, 158, 0.12), transparent 70%),
+      var(--bg);
+    min-height: 100vh; min-height: 100dvh;
+  }
+  main {
+    width: min(480px, 100%); margin: 0 auto;
+    padding: calc(48px + env(safe-area-inset-top)) 18px calc(40px + env(safe-area-inset-bottom));
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .logo { width: 104px; height: 104px; border-radius: 28px; box-shadow: 0 18px 50px rgba(131, 88, 255, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.12); animation: pop 0.6s cubic-bezier(0.2, 0.9, 0.25, 1.2) both; }
+  h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; margin: 18px 0 6px; animation: rise 0.5s 0.08s both; }
+  .tagline { margin: 0; color: var(--muted); font-size: 15.5px; line-height: 1.5; text-align: center; max-width: 34ch; animation: rise 0.5s 0.14s both; }
+  .badges { display: flex; gap: 6px; margin: 14px 0 26px; flex-wrap: wrap; justify-content: center; animation: rise 0.5s 0.18s both; }
+  .badge { font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 999px; background: var(--card); border: 1px solid var(--border); color: var(--muted); }
+  .links { width: 100%; display: grid; gap: 12px; }
+  .link {
+    position: relative; display: flex; align-items: center; gap: 14px; width: 100%; min-height: 64px; padding: 12px 18px 12px 14px;
+    border-radius: 18px; background: var(--card); border: 1px solid var(--border); color: var(--text); text-decoration: none;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    animation: rise 0.5s both; animation-delay: calc(0.22s + var(--i) * 0.06s);
+  }
+  .link:hover { background: var(--card-hover); transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.18); }
+  .link:active { transform: scale(0.98); }
+  .link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .link.primary { background: linear-gradient(135deg, var(--accent), #6A3FE6); border-color: transparent; box-shadow: 0 12px 34px rgba(131, 88, 255, 0.45); }
+  .link.primary:hover { box-shadow: 0 16px 40px rgba(131, 88, 255, 0.6); }
+  .link.discord { background: rgba(88, 101, 242, 0.16); border-color: rgba(88, 101, 242, 0.45); }
+  .icon { width: 40px; height: 40px; flex: none; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.08); }
+  .primary .icon { background: rgba(255, 255, 255, 0.18); }
+  .icon svg { width: 21px; height: 21px; }
+  .text { flex: 1; min-width: 0; text-align: left; }
+  .title { font-weight: 800; font-size: 16px; }
+  .sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .primary .sub { color: rgba(255, 255, 255, 0.82); }
+  .arrow { flex: none; opacity: 0.6; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .row2 .link { min-height: 60px; padding: 10px 12px; gap: 10px; }
+  .row2 .icon { width: 34px; height: 34px; border-radius: 10px; }
+  .row2 .title { font-size: 14.5px; }
+  .row2 .arrow { display: none; }
+  .small-note { font-size: 12.5px; color: var(--muted); margin-top: 2px; text-align: center; }
+  .small-note a { color: var(--muted); }
+  footer { margin-top: 34px; font-size: 12.5px; color: #7E7696; text-align: center; animation: rise 0.5s 0.7s both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @keyframes pop { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<main>
+  <img class="logo" src="logo.png" alt="CreativeFlow logo" width="104" height="104">
+  <h1>CreativeFlow</h1>
+  <p class="tagline">Plan, script and grow your channel, all in one place.</p>
+  <div class="badges"><span class="badge">YouTube</span><span class="badge">Shorts</span><span class="badge">TikTok</span><span class="badge">Reels</span></div>
+
+  <nav class="links" aria-label="CreativeFlow links">
+    <a class="link primary" style="--i:0" href="https://app.creativeflow.media">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="text"><span class="title">Open CreativeFlow</span><span class="sub" style="display:block">Use it in your browser, on any device</span></span>
+    </a>
+    <a class="link" style="--i:1" href="https://creativeflow15.gumroad.com/l/dcwgkt">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17l-5.9 3 1.2-6.5L2.5 8.9 9.1 8z"/></svg></span>
+      <span class="text"><span class="title">Get a membership</span><span class="sub" style="display:block">Unlock everything, including Adonis AI</span></span>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <div class="row2">
+      <a class="link" style="--i:2" href="https://creativeflow-updates.netlify.app/download/windows">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.4 4.5v7H3zm8.4-1.1L21 3v8.5h-9.6zM3 12.5h7.4v7L3 18.5zm8.4 0H21V21l-9.6-1.3z"/></svg></span>
+        <span class="text"><span class="title">Windows</span><span class="sub" style="display:block">Download</span></span>
+      </a>
+      <a class="link" style="--i:3" href="https://creativeflow-updates.netlify.app/download/mac">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.76 2.28-1.6 2.78-.41 6.9 1.15 9.15.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.65zM14.1 5.86c.63-.77 1.06-1.83.94-2.89-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.8 1.02.08 2.05-.52 2.69-1.28z"/></svg></span>
+        <span class="text"><span class="title">Mac</span><span class="sub" style="display:block">Download</span></span>
+      </a>
+    </div>
+    <p class="small-note">Older Intel Mac? <a href="https://creativeflow-updates.netlify.app/download/mac-intel">Download the Intel version</a></p>
+    <a class="link discord" style="--i:4" href="https://discord.gg/AkTxFh4Zvh">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 5.2A16.6 16.6 0 0 0 15.5 4l-.5 1a15.3 15.3 0 0 0-6 0l-.5-1a16.6 16.6 0 0 0-4.1 1.2C1.8 9 1.1 12.8 1.4 16.5a16.7 16.7 0 0 0 5 2.5l1.1-1.7a10.8 10.8 0 0 1-1.7-.8l.4-.3a11.9 11.9 0 0 0 11.6 0l.4.3a10.8 10.8 0 0 1-1.7.8l1.1 1.7a16.7 16.7 0 0 0 5-2.5c.4-4.3-.7-8-2-11.3zM8.7 14.3c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"/></svg></span>
+      <span class="text"><span class="title">Join the Discord</span><span class="sub" style="display:block">Chat with other creators and the team</span></span>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <a class="link" style="--i:5" href="https://creativeflow.media">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+      <span class="text"><span class="title">Website</span><span class="sub" style="display:block">creativeflow.media</span></span>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+  </nav>
+
+  <footer>© <span id="year">2026</span> CreativeFlow by CreativeMinds</footer>
+</main>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
