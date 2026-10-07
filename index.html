@@ -115,6 +115,32 @@
   /* Background: soft particles falling slowly, like snow */
   .bg-fall { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
   footer { margin-top: 34px; font-size: 12.5px; color: #7E7696; text-align: center; animation: rise 0.5s 0.7s both; }
+  /* Phones only (computers unchanged): everything smaller and tighter so it fits the screen */
+  @media (max-width: 600px) {
+    main { padding: calc(20px + env(safe-area-inset-top)) 14px calc(28px + env(safe-area-inset-bottom)); }
+    .logo { width: 80px; height: 80px; }
+    h1 { font-size: 25px; margin: 12px 0 4px; }
+    .tagline { font-size: 13.5px; }
+    .bio { line-height: 1.4; }
+    .tagline.bio { margin-bottom: 16px !important; }
+    .icon-links { gap: 12px; margin-top: -4px; }
+    .icon-link { width: 42px; height: 42px; }
+    .icon-link svg { width: 20px; height: 20px; }
+    .section { margin-top: 20px; }
+    .section h2 { font-size: 16px; margin-bottom: 8px; }
+    .row { --w: 46vw; height: calc(var(--w) + 50px); }
+    .row .card[data-pos="-1"] { transform: translateX(-66%) scale(0.76); }
+    .row .card[data-pos="1"] { transform: translateX(66%) scale(0.76); }
+    .card { border-radius: 14px; }
+    .card-label { padding: 8px 10px 10px; font-size: 14px; }
+    .card-label small { font-size: 11.5px; margin-top: 1px; }
+    .yt-play { width: 30px; height: 30px; right: 8px; bottom: 8px; }
+    .yt-play svg { width: 14px; height: 14px; }
+    .row-prev, .row-next { width: 32px; height: 32px; top: 34%; }
+    .row-prev svg, .row-next svg { width: 15px; height: 15px; }
+    .row-prev { left: 0; } .row-next { right: 0; }
+    footer { margin-top: 22px; }
+  }
   @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
   @keyframes pop { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: none; } }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
