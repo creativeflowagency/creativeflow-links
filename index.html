@@ -29,7 +29,7 @@
     min-height: 100vh; min-height: 100dvh;
   }
   main {
-    width: min(480px, 100%); margin: 0 auto;
+    width: min(560px, 100%); margin: 0 auto;
     padding: calc(48px + env(safe-area-inset-top)) 18px calc(40px + env(safe-area-inset-bottom));
     display: flex; flex-direction: column; align-items: center;
   }
@@ -72,7 +72,7 @@
   .section h2 { text-align: center; font-size: 19px; font-weight: 800; margin: 0 0 12px; letter-spacing: -0.01em; animation: rise 0.5s 0.45s both; }
   .row-wrap { position: relative; animation: rise 0.5s 0.5s both; }
   /* Looping carousel: cards are placed by script (left / middle / right). */
-  .row { --w: min(240px, 60vw); position: relative; height: calc(var(--w) + 66px); touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+  .row { --w: min(290px, 68vw); position: relative; height: calc(var(--w) + 72px); touch-action: pan-y; user-select: none; -webkit-user-select: none; }
   .row .card { position: absolute; top: 0; left: 50%; width: var(--w) !important; margin-left: calc(var(--w) / -2);
     transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.25, 1), filter 0.45s ease, opacity 0.45s ease; will-change: transform; }
   .row .card[data-pos="0"] { transform: translateX(0) scale(1); z-index: 3; filter: none; opacity: 1; }
