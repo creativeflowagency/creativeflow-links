@@ -68,31 +68,37 @@
   .small-note { font-size: 12.5px; color: var(--muted); margin-top: 2px; text-align: center; }
   .small-note a { color: var(--muted); }
   /* YouTube and Social Media rows: cards that slide sideways, with an arrow to scroll */
-  .section { width: 100%; margin-top: 30px; }
-  .section h2 { text-align: center; font-size: 17px; font-weight: 800; margin: 0 0 12px; letter-spacing: -0.01em; animation: rise 0.5s 0.45s both; }
+  .section { width: 100%; margin-top: 34px; }
+  .section h2 { text-align: center; font-size: 19px; font-weight: 800; margin: 0 0 12px; letter-spacing: -0.01em; animation: rise 0.5s 0.45s both; }
   .row-wrap { position: relative; animation: rise 0.5s 0.5s both; }
   .row { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 2px 2px 6px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
   .row::-webkit-scrollbar { display: none; }
   .card { flex: none; scroll-snap-align: start; display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; background: var(--card); border: 1px solid var(--border); color: var(--text); text-decoration: none; transition: transform 0.18s ease, border-color 0.18s ease; }
   .card:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.2); }
   .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-  .card.yt { width: 82%; }
-  .card.social { width: 46%; }
+  .card.yt, .card.social { width: 62%; }
   .card-img { position: relative; display: block; background: #000 center / cover no-repeat; }
-  .yt .card-img { aspect-ratio: 16 / 9; }
+  .yt .card-img { aspect-ratio: 1; }
   .social .card-img { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; }
   .social .card-img svg { width: 52%; height: 52%; }
   .social.x .card-img { background: #000; color: #fff; }
   .social.tiktok .card-img { background: #000; }
   .social.insta .card-img { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); color: #fff; }
   .card-avatar { position: absolute; left: 12px; bottom: 12px; width: 44px; height: 44px; border-radius: 50%; border: 2px solid #fff; object-fit: cover; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); }
-  .yt-play { position: absolute; left: 50%; top: 50%; width: 48px; height: 48px; margin: -24px 0 0 -24px; border-radius: 50%; background: rgba(0, 0, 0, 0.55); color: #fff; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-  .yt-play svg { width: 22px; height: 22px; margin-left: 3px; }
-  .card-label { padding: 12px 14px 14px; font-weight: 800; font-size: 15px; text-align: center; }
+  .yt-play { position: absolute; right: 10px; bottom: 10px; width: 40px; height: 40px; border-radius: 50%; background: #FF0033; color: #fff; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .yt-play svg { width: 18px; height: 18px; margin-left: 2px; }
+  .card-label { padding: 14px 14px 16px; font-weight: 800; font-size: 17px; text-align: center; }
   .card-label small { display: block; font-weight: 600; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
-  .row-next { position: absolute; right: 4px; top: 38%; width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  .row-next { position: absolute; right: 4px; top: 40%; width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
     background: rgba(255, 255, 255, 0.85); color: #111; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); }
   .row-next[hidden] { display: none; }
+  .icon-links { display: flex; gap: 14px; justify-content: center; margin-top: -8px; animation: rise 0.5s 0.2s both; }
+  .icon-link { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text);
+    background: var(--card); border: 1px solid var(--border); transition: transform 0.18s ease, background 0.18s ease; }
+  .icon-link svg { width: 24px; height: 24px; }
+  .icon-link:hover { transform: translateY(-2px); background: var(--card-hover); }
+  .icon-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .icon-link.discord { background: rgba(88, 101, 242, 0.22); border-color: rgba(88, 101, 242, 0.5); color: #C9CDFF; }
   footer { margin-top: 34px; font-size: 12.5px; color: #7E7696; text-align: center; animation: rise 0.5s 0.7s both; }
   @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
   @keyframes pop { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: none; } }
@@ -105,17 +111,9 @@
   <h1>CreativeFlow</h1>
   <p class="tagline" style="margin-bottom:28px">Plan, script and grow your channel, all in one place.</p>
 
-  <nav class="links" aria-label="CreativeFlow links">
-    <a class="link discord" style="--i:0" href="https://discord.gg/AkTxFh4Zvh">
-      <span class="icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 5.2A16.6 16.6 0 0 0 15.5 4l-.5 1a15.3 15.3 0 0 0-6 0l-.5-1a16.6 16.6 0 0 0-4.1 1.2C1.8 9 1.1 12.8 1.4 16.5a16.7 16.7 0 0 0 5 2.5l1.1-1.7a10.8 10.8 0 0 1-1.7-.8l.4-.3a11.9 11.9 0 0 0 11.6 0l.4.3a10.8 10.8 0 0 1-1.7.8l1.1 1.7a16.7 16.7 0 0 0 5-2.5c.4-4.3-.7-8-2-11.3zM8.7 14.3c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"/></svg></span>
-      <span class="text"><span class="title">Join the Discord</span><span class="sub" style="display:block">Chat with other creators and the team</span></span>
-      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
-    </a>
-    <a class="link" style="--i:1" href="https://creativeflow.media">
-      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
-      <span class="text"><span class="title">Website</span><span class="sub" style="display:block">creativeflow.media</span></span>
-      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
-    </a>
+  <nav class="icon-links" aria-label="CreativeFlow links">
+    <a class="icon-link discord" href="https://discord.gg/AkTxFh4Zvh" target="_blank" rel="noopener" aria-label="Join the Discord" title="Join the Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 5.2A16.6 16.6 0 0 0 15.5 4l-.5 1a15.3 15.3 0 0 0-6 0l-.5-1a16.6 16.6 0 0 0-4.1 1.2C1.8 9 1.1 12.8 1.4 16.5a16.7 16.7 0 0 0 5 2.5l1.1-1.7a10.8 10.8 0 0 1-1.7-.8l.4-.3a11.9 11.9 0 0 0 11.6 0l.4.3a10.8 10.8 0 0 1-1.7.8l1.1 1.7a16.7 16.7 0 0 0 5-2.5c.4-4.3-.7-8-2-11.3zM8.7 14.3c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"/></svg></a>
+    <a class="icon-link" href="https://creativeflow.media" target="_blank" rel="noopener" aria-label="Website" title="Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></a>
   </nav>
 
   <section class="section" aria-labelledby="ytHead">
@@ -123,22 +121,19 @@
     <div class="row-wrap">
       <div class="row">
         <a class="card yt" href="https://flyn.co/mainchannel" target="_blank" rel="noopener">
-          <span class="card-img" style="background-image:url('yt-main-banner.jpg')">
-            <img class="card-avatar" src="yt-main-avatar.jpg" alt="" loading="lazy">
+          <span class="card-img" style="background-image:url('yt-main-avatar.jpg')">
             <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
           </span>
           <span class="card-label">Rich Malone<small>Main channel</small></span>
         </a>
         <a class="card yt" href="https://flyn.co/gaming" target="_blank" rel="noopener">
-          <span class="card-img" style="background-image:url('yt-gaming-banner.jpg')">
-            <img class="card-avatar" src="yt-gaming-avatar.jpg" alt="" loading="lazy">
+          <span class="card-img" style="background-image:url('yt-gaming-avatar.jpg')">
             <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
           </span>
           <span class="card-label">MaloneGAMING<small>Gaming</small></span>
         </a>
         <a class="card yt" href="https://flyn.co/films" target="_blank" rel="noopener">
-          <span class="card-img" style="background-image:url('yt-films-banner.jpg')">
-            <img class="card-avatar" src="yt-films-avatar.jpg" alt="" loading="lazy">
+          <span class="card-img" style="background-image:url('yt-films-avatar.jpg')">
             <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
           </span>
           <span class="card-label">EditorMalone<small>Films</small></span>
