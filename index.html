@@ -67,6 +67,32 @@
   .row2 .arrow { display: none; }
   .small-note { font-size: 12.5px; color: var(--muted); margin-top: 2px; text-align: center; }
   .small-note a { color: var(--muted); }
+  /* YouTube and Social Media rows: cards that slide sideways, with an arrow to scroll */
+  .section { width: 100%; margin-top: 30px; }
+  .section h2 { text-align: center; font-size: 17px; font-weight: 800; margin: 0 0 12px; letter-spacing: -0.01em; animation: rise 0.5s 0.45s both; }
+  .row-wrap { position: relative; animation: rise 0.5s 0.5s both; }
+  .row { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 2px 2px 6px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .row::-webkit-scrollbar { display: none; }
+  .card { flex: none; scroll-snap-align: start; display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; background: var(--card); border: 1px solid var(--border); color: var(--text); text-decoration: none; transition: transform 0.18s ease, border-color 0.18s ease; }
+  .card:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.2); }
+  .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .card.yt { width: 82%; }
+  .card.social { width: 46%; }
+  .card-img { position: relative; display: block; background: #000 center / cover no-repeat; }
+  .yt .card-img { aspect-ratio: 16 / 9; }
+  .social .card-img { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; }
+  .social .card-img svg { width: 52%; height: 52%; }
+  .social.x .card-img { background: #000; color: #fff; }
+  .social.tiktok .card-img { background: #000; }
+  .social.insta .card-img { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); color: #fff; }
+  .card-avatar { position: absolute; left: 12px; bottom: 12px; width: 44px; height: 44px; border-radius: 50%; border: 2px solid #fff; object-fit: cover; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); }
+  .yt-play { position: absolute; left: 50%; top: 50%; width: 48px; height: 48px; margin: -24px 0 0 -24px; border-radius: 50%; background: rgba(0, 0, 0, 0.55); color: #fff; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .yt-play svg { width: 22px; height: 22px; margin-left: 3px; }
+  .card-label { padding: 12px 14px 14px; font-weight: 800; font-size: 15px; text-align: center; }
+  .card-label small { display: block; font-weight: 600; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .row-next { position: absolute; right: 4px; top: 38%; width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    background: rgba(255, 255, 255, 0.85); color: #111; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); }
+  .row-next[hidden] { display: none; }
   footer { margin-top: 34px; font-size: 12.5px; color: #7E7696; text-align: center; animation: rise 0.5s 0.7s both; }
   @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
   @keyframes pop { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: none; } }
@@ -92,8 +118,73 @@
     </a>
   </nav>
 
+  <section class="section" aria-labelledby="ytHead">
+    <h2 id="ytHead">YouTube</h2>
+    <div class="row-wrap">
+      <div class="row">
+        <a class="card yt" href="https://flyn.co/mainchannel" target="_blank" rel="noopener">
+          <span class="card-img" style="background-image:url('yt-main-banner.jpg')">
+            <img class="card-avatar" src="yt-main-avatar.jpg" alt="" loading="lazy">
+            <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          </span>
+          <span class="card-label">Rich Malone<small>Main channel</small></span>
+        </a>
+        <a class="card yt" href="https://flyn.co/gaming" target="_blank" rel="noopener">
+          <span class="card-img" style="background-image:url('yt-gaming-banner.jpg')">
+            <img class="card-avatar" src="yt-gaming-avatar.jpg" alt="" loading="lazy">
+            <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          </span>
+          <span class="card-label">MaloneGAMING<small>Gaming</small></span>
+        </a>
+        <a class="card yt" href="https://flyn.co/films" target="_blank" rel="noopener">
+          <span class="card-img" style="background-image:url('yt-films-banner.jpg')">
+            <img class="card-avatar" src="yt-films-avatar.jpg" alt="" loading="lazy">
+            <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          </span>
+          <span class="card-label">EditorMalone<small>Films</small></span>
+        </a>
+      </div>
+      <button type="button" class="row-next" aria-label="More YouTube channels"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="socialHead">
+    <h2 id="socialHead">Social Media</h2>
+    <div class="row-wrap">
+      <div class="row">
+        <a class="card social x" href="https://flyn.co/xacc" target="_blank" rel="noopener">
+          <span class="card-img"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></svg></span>
+          <span class="card-label">X (Twitter)</span>
+        </a>
+        <a class="card social tiktok" href="https://flyn.co/tiktokrich" target="_blank" rel="noopener">
+          <span class="card-img"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25F4EE" d="M15.5 2.5h-3v12.6a2.6 2.6 0 1 1-2.6-2.6c.3 0 .6 0 .8.1V9.5a5.7 5.7 0 1 0 4.8 5.6V8.9a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-4.3-4.3z" transform="translate(-.6 -.4)"/><path fill="#FE2C55" d="M15.5 2.5h-3v12.6a2.6 2.6 0 1 1-2.6-2.6c.3 0 .6 0 .8.1V9.5a5.7 5.7 0 1 0 4.8 5.6V8.9a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-4.3-4.3z" transform="translate(.6 .4)"/><path fill="#fff" d="M15.5 2.5h-3v12.6a2.6 2.6 0 1 1-2.6-2.6c.3 0 .6 0 .8.1V9.5a5.7 5.7 0 1 0 4.8 5.6V8.9a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-4.3-4.3z"/></svg></span>
+          <span class="card-label">TikTok</span>
+        </a>
+        <a class="card social insta" href="https://flyn.co/instarich" target="_blank" rel="noopener">
+          <span class="card-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></span>
+          <span class="card-label">Instagram</span>
+        </a>
+      </div>
+      <button type="button" class="row-next" aria-label="More social media"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+
   <footer>© <span id="year">2026</span> CreativeFlow by CreativeMinds</footer>
 </main>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  // The arrow scrolls each row by one card, and hides once you reach the end.
+  document.querySelectorAll('.row-wrap').forEach(wrap => {
+    const row = wrap.querySelector('.row'), btn = wrap.querySelector('.row-next');
+    const update = () => { btn.hidden = row.scrollLeft + row.clientWidth >= row.scrollWidth - 4; };
+    btn.addEventListener('click', () => {
+      const card = row.querySelector('.card');
+      row.scrollBy({ left: card ? card.offsetWidth + 12 : row.clientWidth * 0.8, behavior: 'smooth' });
+    });
+    row.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
+</script>
 </body>
 </html>
