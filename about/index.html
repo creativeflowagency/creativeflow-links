@@ -131,20 +131,20 @@
   .form-msg.ok { color: #7EE2A8; } .form-msg.err { color: #FF8A8A; }
   @media (max-width: 780px) { .work { grid-template-columns: 1fr; } }
 
-  /* Falling particles behind everything (same as the link page) */
-  .bg-fall { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+  /* Falling particles in the top section only (same as the link page); everything below is one plain colour */
+  .bg-fall { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
   .hero-inner, .wrap, footer > * { position: relative; z-index: 2; }
 
   /* Connector between sections (like creativeflow.media): a line that fills and glows as you
      scroll, then the next section's top edge lights up edge to edge. */
-  .scroll-link { position: relative; height: 100px; z-index: 2; }
+  .scroll-link { position: relative; height: 100px; z-index: 2; background: var(--bg); }
   .scroll-link-fill { position: absolute; left: 50%; top: 0; width: 2px; height: 0%; transform: translateX(-50%); border-radius: 2px;
     background: linear-gradient(180deg, #5B7BFF, var(--accent)); box-shadow: 0 0 10px rgba(91, 123, 255, 0.75); }
   .scroll-link-dot { position: absolute; left: 50%; width: 9px; height: 9px; border-radius: 50%; transform: translate(-50%, -50%);
     background: var(--bg); border: 1.5px solid rgba(255, 255, 255, 0.25); z-index: 1; opacity: 0; }
   .scroll-link-dot.top { top: 0; } .scroll-link-dot.bottom { top: 100%; }
   .scroll-link-dot.lit { background: #5B7BFF; border-color: #5B7BFF; box-shadow: 0 0 10px rgba(91, 123, 255, 0.85); opacity: 1; }
-  section.block { position: relative; --line-progress: 0; }
+  section.block { position: relative; --line-progress: 0; background: var(--bg); }
   section.block::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; z-index: 2; transform: scaleX(var(--line-progress, 0));
     background: linear-gradient(90deg, transparent, #5B7BFF, var(--accent), transparent); box-shadow: 0 0 18px rgba(91, 123, 255, 0.65); }
   @media (prefers-reduced-motion: no-preference) {
@@ -165,10 +165,10 @@
 </style>
 </head>
 <body>
-<canvas class="bg-fall" id="bgFall" aria-hidden="true"></canvas>
 <main id="top">
   <section class="hero" aria-label="Rich Malone">
     <div class="hero-bg" aria-hidden="true"></div>
+    <canvas class="bg-fall" id="bgFall" aria-hidden="true"></canvas>
     <div class="hero-inner">
       <img class="portrait" src="../yt-main-avatar.jpg" alt="Rich Malone" width="170" height="170">
       <p class="kicker">Digital creator · 20</p>
@@ -321,7 +321,7 @@
     });
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = window.innerWidth; h = window.innerHeight;
+      w = canvas.parentElement.clientWidth; h = canvas.parentElement.clientHeight; // the top section, not the window
       canvas.width = w * dpr; canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       const count = Math.round(Math.min(110, Math.max(40, (w * h) / 14000)));
@@ -345,8 +345,11 @@
         ctx.fill();
       }
     }
-    function loop(t) { if (!document.hidden) draw(t); requestAnimationFrame(loop); }
+    let onScreen = true; // no drawing while the top section is scrolled away
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; }).observe(canvas.parentElement);
+    function loop(t) { if (!document.hidden && onScreen) draw(t); requestAnimationFrame(loop); }
     window.addEventListener('resize', resize);
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas.parentElement);
     resize();
     if (!reduce) requestAnimationFrame(loop);
   })();
