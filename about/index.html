@@ -11,15 +11,12 @@
 <meta name="theme-color" content="#050407">
 <link rel="icon" href="../yt-main-avatar.jpg">
 <link rel="apple-touch-icon" href="../yt-main-avatar.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #050407; --panel: #0D0B12; --line: rgba(255, 255, 255, 0.09);
     --text: #F4F1F8; --muted: #A49DB4; --accent: #8358FF; --warm: #FFB547;
-    --display: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
-    --body: Inter, Helvetica, Arial, sans-serif;
+    --display: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+    --body: Helvetica, 'Helvetica Neue', Arial, sans-serif;
   }
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -44,17 +41,25 @@
       var(--bg); }
   .hero-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.75)); }
   .hero-inner { position: relative; z-index: 2; }
-  .portrait { width: clamp(120px, 22vw, 170px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; margin: 0 auto 26px;
+  .portrait { width: clamp(120px, 22vw, 170px); height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; margin: 0 auto 26px;
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15), 0 30px 80px rgba(131, 88, 255, 0.45); animation: rise 1s 0.1s both; }
   .kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; color: var(--warm); margin: 0 0 10px; animation: rise 1s 0.25s both; }
-  .hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(64px, 15vw, 172px); line-height: 0.88; letter-spacing: 0.02em; margin: 0;
+  .hero h1 { font-family: var(--display); font-weight: 800; font-size: clamp(56px, 12vw, 140px); line-height: 0.92; letter-spacing: -0.045em; margin: 0;
     text-shadow: 0 10px 60px rgba(131, 88, 255, 0.35); animation: rise 1s 0.35s both; }
-  .roles { font-family: var(--display); font-size: clamp(22px, 4.4vw, 38px); letter-spacing: 0.18em; color: var(--muted); margin: 14px 0 0; animation: rise 1s 0.5s both; }
+  .roles { font-family: var(--display); font-weight: 700; font-size: clamp(15px, 2.4vw, 20px); letter-spacing: 0.32em; text-transform: uppercase; color: var(--muted); margin: 14px 0 0; animation: rise 1s 0.5s both; }
   .roles span { color: var(--text); }
   .scroll { position: absolute; z-index: 4; bottom: 24px; left: 50%; transform: translateX(-50%); font-size: 11px; letter-spacing: 0.3em;
     text-transform: uppercase; color: var(--muted); text-decoration: none; animation: bob 2.4s ease-in-out infinite; }
   @keyframes bob { 50% { transform: translate(-50%, 6px); } }
   @media (max-height: 860px) { .scroll { display: none; } }
+  /* Latest video, under the name */
+  .latest { width: min(860px, 100%); margin: 34px auto 0; animation: rise 1s 0.65s both; }
+  .latest .player { position: relative; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: #000;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 40px 100px rgba(0, 0, 0, 0.6), 0 20px 80px rgba(131, 88, 255, 0.25); }
+  .latest iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .latest .caption { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; font-size: 13px; color: var(--muted); text-align: left; }
+  .latest .caption b { color: var(--text); font-weight: 700; }
+  .latest .caption a { color: var(--muted); white-space: nowrap; }
   @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
   /* Sections */
@@ -62,7 +67,7 @@
   .wrap { width: min(1080px, 100%); margin: 0 auto; }
   .label { display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 700; letter-spacing: 0.35em; text-transform: uppercase; color: var(--warm); margin: 0 0 18px; }
   .label::before { content: ''; width: 34px; height: 1px; background: var(--warm); }
-  h2 { font-family: var(--display); font-weight: 400; font-size: clamp(44px, 8vw, 92px); line-height: 0.95; letter-spacing: 0.02em; margin: 0 0 28px; text-wrap: balance; }
+  h2 { font-family: var(--display); font-weight: 800; font-size: clamp(38px, 6.5vw, 76px); line-height: 1; letter-spacing: -0.035em; margin: 0 0 28px; text-wrap: balance; }
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.9s ease, transform 0.9s ease; }
   .reveal.in { opacity: 1; transform: none; }
 
@@ -72,7 +77,7 @@
   .story .lead { font-size: clamp(20px, 2.4vw, 26px); color: var(--text); font-weight: 500; line-height: 1.45; }
   .facts { display: grid; gap: 14px; }
   .fact { padding: 20px 22px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
-  .fact b { display: block; font-family: var(--display); font-weight: 400; font-size: 34px; letter-spacing: 0.04em; line-height: 1; color: var(--text); }
+  .fact b { display: block; font-family: var(--display); font-weight: 800; font-size: 28px; letter-spacing: -0.02em; line-height: 1; color: var(--text); }
   .fact span { color: var(--muted); font-size: 14px; }
   @media (max-width: 780px) { .story { grid-template-columns: 1fr; } }
 
@@ -85,7 +90,7 @@
   .channel:hover .frame { filter: none; transform: scale(1.04); }
   .channel .info { position: absolute; left: 0; right: 0; bottom: 0; padding: 70px 20px 20px; background: linear-gradient(transparent, rgba(5, 4, 7, 0.95)); }
   .channel .tag { font-size: 11px; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; color: var(--warm); }
-  .channel .name { font-family: var(--display); font-size: 36px; letter-spacing: 0.03em; line-height: 1; margin-top: 4px; }
+  .channel .name { font-family: var(--display); font-weight: 800; font-size: 28px; letter-spacing: -0.02em; line-height: 1; margin-top: 4px; }
   .channel .go { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--muted); }
   .channel .go svg { width: 18px; height: 18px; }
   @media (max-width: 780px) { .channels { grid-template-columns: 1fr; } .channel .frame { aspect-ratio: 16 / 10; } }
@@ -95,8 +100,8 @@
   .biz-item { display: grid; grid-template-columns: 90px 1fr auto; gap: 22px; align-items: center; padding: 26px clamp(18px, 3vw, 30px);
     border: 1px solid var(--line); border-radius: 18px; background: var(--panel); text-decoration: none; transition: border-color 0.3s, background 0.3s; }
   a.biz-item:hover { border-color: rgba(131, 88, 255, 0.55); background: #110E18; }
-  .biz-num { font-family: var(--display); font-size: 56px; line-height: 1; color: rgba(255, 255, 255, 0.14); }
-  .biz-item h3 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4vw, 40px); letter-spacing: 0.03em; line-height: 1; margin: 0 0 6px; }
+  .biz-num { font-family: var(--display); font-weight: 800; font-size: 48px; line-height: 1; color: rgba(255, 255, 255, 0.14); }
+  .biz-item h3 { font-family: var(--display); font-weight: 800; font-size: clamp(24px, 3vw, 30px); letter-spacing: -0.02em; line-height: 1; margin: 0 0 6px; }
   .biz-item p { margin: 0; color: var(--muted); font-size: 15.5px; max-width: 60ch; }
   .pill { font-size: 11.5px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; padding: 7px 12px; border-radius: 999px; white-space: nowrap;
     border: 1px solid var(--line); color: var(--muted); }
@@ -146,6 +151,14 @@
       <p class="kicker">Digital creator · 20</p>
       <h1>Rich<br>Malone</h1>
       <p class="roles"><span>Editor</span> · <span>Creator</span> · <span>Builder</span></p>
+      <!-- Latest long video on the main channel (update the video id when a new one is out) -->
+      <div class="latest">
+        <div class="player">
+          <iframe src="https://www.youtube-nocookie.com/embed/wEc7N8O2d9Q?rel=0" title="A Week in London With the Group Chat | Vlog" loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="caption"><span>Latest video · <b>A Week in London With the Group Chat</b></span><a href="https://flyn.co/mainchannel" target="_blank" rel="noopener">More on YouTube</a></div>
+      </div>
     </div>
     <a class="scroll" href="#story">Scroll</a>
   </section>
