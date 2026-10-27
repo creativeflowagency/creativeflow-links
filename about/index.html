@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rich Malone · Editor, Creator, Builder</title>
+<meta name="description" content="Rich Malone: video editor, YouTube creator and founder of CreativeFlow. My story, my channels, what I'm building, and how to work with me.">
+<meta property="og:title" content="Rich Malone">
+<meta property="og:description" content="Editor. Creator. Builder.">
+<meta property="og:image" content="https://richmalone.site/yt-main-avatar.jpg">
+<meta name="theme-color" content="#050407">
+<link rel="icon" href="../yt-main-avatar.jpg">
+<link rel="apple-touch-icon" href="../yt-main-avatar.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050407; --panel: #0D0B12; --line: rgba(255, 255, 255, 0.09);
+    --text: #F4F1F8; --muted: #A49DB4; --accent: #8358FF; --warm: #FFB547;
+    --display: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+    --body: Inter, Helvetica, Arial, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; overflow-x: clip; }
+  body { background: var(--bg); color: var(--text); font-family: var(--body); -webkit-font-smoothing: antialiased; line-height: 1.6; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  /* Film grain over everything, and a soft vignette */
+  body::before { content: ''; position: fixed; inset: -50%; z-index: 50; pointer-events: none; opacity: 0.07;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain 0.9s steps(4) infinite; }
+  @keyframes grain { 0% { transform: translate(0, 0); } 25% { transform: translate(-3%, 2%); } 50% { transform: translate(2%, -3%); } 75% { transform: translate(-2%, -1%); } 100% { transform: translate(0, 0); } }
+
+  /* Top bar */
+  .bar { position: fixed; top: 0; left: 0; right: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between;
+    padding: calc(14px + env(safe-area-inset-top)) clamp(16px, 4vw, 40px) 14px; background: linear-gradient(rgba(5, 4, 7, 0.85), transparent); }
+  .bar .mark { font-family: var(--display); font-size: 22px; letter-spacing: 0.08em; text-decoration: none; }
+  .bar nav { display: flex; gap: clamp(12px, 3vw, 28px); font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .bar nav a { text-decoration: none; color: var(--muted); transition: color 0.2s; }
+  .bar nav a:hover { color: var(--text); }
+  @media (max-width: 560px) { .bar nav a.opt { display: none; } }
+
+  /* Hero: letterboxed like a film frame */
+  .hero { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; text-align: center; overflow: hidden;
+    padding: 90px 16px 70px; }
+  .hero::before, .hero::after { content: ''; position: absolute; left: 0; right: 0; height: 9vh; background: #000; z-index: 3; }
+  .hero::before { top: 0; } .hero::after { bottom: 0; }
+  .hero-bg { position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(60% 55% at 50% 45%, rgba(131, 88, 255, 0.32), transparent 70%),
+      radial-gradient(40% 40% at 80% 70%, rgba(255, 181, 71, 0.10), transparent 70%),
+      var(--bg); }
+  .hero-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.75)); }
+  .hero-inner { position: relative; z-index: 2; }
+  .portrait { width: clamp(120px, 22vw, 170px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; margin: 0 auto 26px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15), 0 30px 80px rgba(131, 88, 255, 0.45); animation: rise 1s 0.1s both; }
+  .kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; color: var(--warm); margin: 0 0 10px; animation: rise 1s 0.25s both; }
+  .hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(64px, 15vw, 172px); line-height: 0.88; letter-spacing: 0.02em; margin: 0;
+    text-shadow: 0 10px 60px rgba(131, 88, 255, 0.35); animation: rise 1s 0.35s both; }
+  .roles { font-family: var(--display); font-size: clamp(22px, 4.4vw, 38px); letter-spacing: 0.18em; color: var(--muted); margin: 14px 0 0; animation: rise 1s 0.5s both; }
+  .roles span { color: var(--text); }
+  .scroll { position: absolute; z-index: 4; bottom: calc(9vh + 16px); left: 50%; transform: translateX(-50%); font-size: 11px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--muted); text-decoration: none; animation: bob 2.4s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translate(-50%, 6px); } }
+  @media (max-height: 860px) { .scroll { display: none; } }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+  /* Sections */
+  section.block { padding: clamp(72px, 12vw, 130px) clamp(16px, 5vw, 48px); border-top: 1px solid var(--line); }
+  .wrap { width: min(1080px, 100%); margin: 0 auto; }
+  .label { display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 700; letter-spacing: 0.35em; text-transform: uppercase; color: var(--warm); margin: 0 0 18px; }
+  .label::before { content: ''; width: 34px; height: 1px; background: var(--warm); }
+  h2 { font-family: var(--display); font-weight: 400; font-size: clamp(44px, 8vw, 92px); line-height: 0.95; letter-spacing: 0.02em; margin: 0 0 28px; text-wrap: balance; }
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* Story */
+  .story { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(28px, 6vw, 72px); align-items: start; }
+  .story p { color: #D7D1E3; font-size: clamp(16px, 1.6vw, 18.5px); margin: 0 0 18px; }
+  .story .lead { font-size: clamp(20px, 2.4vw, 26px); color: var(--text); font-weight: 500; line-height: 1.45; }
+  .facts { display: grid; gap: 14px; }
+  .fact { padding: 20px 22px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+  .fact b { display: block; font-family: var(--display); font-weight: 400; font-size: 34px; letter-spacing: 0.04em; line-height: 1; color: var(--text); }
+  .fact span { color: var(--muted); font-size: 14px; }
+  @media (max-width: 780px) { .story { grid-template-columns: 1fr; } }
+
+  /* Channels: film strip cards */
+  .channels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .channel { position: relative; display: block; text-decoration: none; border-radius: 18px; overflow: hidden; background: var(--panel); border: 1px solid var(--line);
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease; }
+  .channel:hover { transform: translateY(-6px); border-color: rgba(131, 88, 255, 0.6); box-shadow: 0 24px 60px rgba(131, 88, 255, 0.25); }
+  .channel .frame { aspect-ratio: 4 / 5; background-size: cover; background-position: center; filter: grayscale(0.35) contrast(1.05); transition: filter 0.35s, transform 0.6s; }
+  .channel:hover .frame { filter: none; transform: scale(1.04); }
+  .channel .info { position: absolute; left: 0; right: 0; bottom: 0; padding: 70px 20px 20px; background: linear-gradient(transparent, rgba(5, 4, 7, 0.95)); }
+  .channel .tag { font-size: 11px; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; color: var(--warm); }
+  .channel .name { font-family: var(--display); font-size: 36px; letter-spacing: 0.03em; line-height: 1; margin-top: 4px; }
+  .channel .go { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--muted); }
+  .channel .go svg { width: 18px; height: 18px; }
+  @media (max-width: 780px) { .channels { grid-template-columns: 1fr; } .channel .frame { aspect-ratio: 16 / 10; } }
+
+  /* Businesses */
+  .biz { display: grid; gap: 14px; }
+  .biz-item { display: grid; grid-template-columns: 90px 1fr auto; gap: 22px; align-items: center; padding: 26px clamp(18px, 3vw, 30px);
+    border: 1px solid var(--line); border-radius: 18px; background: var(--panel); text-decoration: none; transition: border-color 0.3s, background 0.3s; }
+  a.biz-item:hover { border-color: rgba(131, 88, 255, 0.55); background: #110E18; }
+  .biz-num { font-family: var(--display); font-size: 56px; line-height: 1; color: rgba(255, 255, 255, 0.14); }
+  .biz-item h3 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4vw, 40px); letter-spacing: 0.03em; line-height: 1; margin: 0 0 6px; }
+  .biz-item p { margin: 0; color: var(--muted); font-size: 15.5px; max-width: 60ch; }
+  .pill { font-size: 11.5px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; padding: 7px 12px; border-radius: 999px; white-space: nowrap;
+    border: 1px solid var(--line); color: var(--muted); }
+  .pill.live { color: #0B0812; background: var(--warm); border-color: var(--warm); }
+  @media (max-width: 680px) { .biz-item { grid-template-columns: 1fr; gap: 10px; } .biz-num { font-size: 40px; } .pill { justify-self: start; } }
+
+  /* Work with me */
+  .work { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(28px, 6vw, 72px); }
+  .ways { list-style: none; padding: 0; margin: 0 0 26px; display: grid; gap: 12px; }
+  .ways li { padding-left: 26px; position: relative; color: #D7D1E3; }
+  .ways li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 12px; height: 2px; background: var(--accent); }
+  .ways b { color: var(--text); }
+  form { display: grid; gap: 14px; padding: clamp(20px, 3vw, 32px); border: 1px solid var(--line); border-radius: 20px; background: var(--panel); }
+  label { display: grid; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  input, select, textarea { width: 100%; font: inherit; font-size: 16px; letter-spacing: normal; text-transform: none; color: var(--text); background: #07060B;
+    border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 12px; padding: 13px 14px; outline: none; transition: border-color 0.2s; }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+  textarea { min-height: 130px; resize: vertical; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .btn { display: inline-flex; justify-content: center; align-items: center; gap: 10px; font: inherit; font-weight: 800; font-size: 15px; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 16px 22px; border-radius: 14px; border: 0; cursor: pointer; color: #fff;
+    background: linear-gradient(135deg, var(--accent), #6A3FE6); box-shadow: 0 14px 40px rgba(131, 88, 255, 0.4); transition: transform 0.15s, box-shadow 0.2s; }
+  .btn:hover { box-shadow: 0 18px 48px rgba(131, 88, 255, 0.55); }
+  .btn:active { transform: scale(0.98); }
+  .btn[disabled] { opacity: 0.6; cursor: default; }
+  .form-msg { min-height: 1.4em; margin: 0; font-size: 14.5px; color: var(--muted); }
+  .form-msg.ok { color: #7EE2A8; } .form-msg.err { color: #FF8A8A; }
+  @media (max-width: 780px) { .work { grid-template-columns: 1fr; } }
+
+  footer { padding: 46px 16px calc(46px + env(safe-area-inset-bottom)); text-align: center; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+  footer a { color: var(--text); text-decoration: none; font-weight: 700; }
+  .socials { display: flex; justify-content: center; gap: 18px; margin-bottom: 14px; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .socials a { color: var(--muted); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="mark" href="#top">RICH MALONE</a>
+  <nav aria-label="Sections">
+    <a class="opt" href="#story">Story</a>
+    <a class="opt" href="#channels">Channels</a>
+    <a class="opt" href="#building">Building</a>
+    <a href="#work">Work with me</a>
+    <a href="../">Links</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="Rich Malone">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <img class="portrait" src="../yt-main-avatar.jpg" alt="Rich Malone" width="170" height="170">
+      <p class="kicker">Digital creator · 20</p>
+      <h1>Rich<br>Malone</h1>
+      <p class="roles"><span>Editor</span> · <span>Creator</span> · <span>Builder</span></p>
+    </div>
+    <a class="scroll" href="#story">Scroll</a>
+  </section>
+
+  <section class="block" id="story">
+    <div class="wrap story">
+      <div class="reveal">
+        <p class="label">The story</p>
+        <h2>A one man army</h2>
+        <p class="lead">I've been creating for as long as I can remember, and these days every frame that goes out with my name on it goes through me.</p>
+        <p>Cutting, adding music, making the final cut: I do all of it. I focus on the details and the tiny stuff people usually miss, because that's what turns raw footage into a video people actually finish.</p>
+        <p>Editing turned into a business. That business turned into tools. Now I'm building CreativeFlow, so other creators can plan, script and grow without the chaos I had to figure out alone.</p>
+      </div>
+      <div class="facts reveal">
+        <div class="fact"><b>3 channels</b><span>Main, gaming and films on YouTube</span></div>
+        <div class="fact"><b>3 products</b><span>An editing agency, a creator app and a creativity game</span></div>
+        <div class="fact"><b>1 editor</b><span>Every project is cut by me, start to finish</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="channels">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="label">On screen</p>
+        <h2>My channels</h2>
+      </div>
+      <div class="channels">
+        <a class="channel reveal" href="https://flyn.co/mainchannel" target="_blank" rel="noopener">
+          <div class="frame" style="background-image:url('../yt-main-avatar.jpg')" role="img" aria-label="Rich Malone channel"></div>
+          <div class="info"><div class="tag">Main channel</div><div class="name">Rich Malone</div>
+            <span class="go"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15V9l5.8 3-5.8 3z"/></svg>Watch on YouTube</span></div>
+        </a>
+        <a class="channel reveal" href="https://flyn.co/gaming" target="_blank" rel="noopener">
+          <div class="frame" style="background-image:url('../yt-gaming-avatar.jpg')" role="img" aria-label="MaloneGAMING channel"></div>
+          <div class="info"><div class="tag">Gaming</div><div class="name">MaloneGAMING</div>
+            <span class="go"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15V9l5.8 3-5.8 3z"/></svg>Watch on YouTube</span></div>
+        </a>
+        <a class="channel reveal" href="https://flyn.co/films" target="_blank" rel="noopener">
+          <div class="frame" style="background-image:url('../yt-films-avatar.jpg')" role="img" aria-label="EditorMalone channel"></div>
+          <div class="info"><div class="tag">Films</div><div class="name">EditorMalone</div>
+            <span class="go"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15V9l5.8 3-5.8 3z"/></svg>Watch on YouTube</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="building">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="label">What I'm building</p>
+        <h2>The businesses</h2>
+      </div>
+      <div class="biz">
+        <a class="biz-item reveal" href="https://creativeflow.media" target="_blank" rel="noopener">
+          <span class="biz-num">01</span>
+          <div><h3>CreativeFlow</h3><p>My video editing agency. Long form, shorts and thumbnails for YouTube creators. Send the raw footage and get back a video you'll want to publish instantly.</p></div>
+          <span class="pill live">Booking now</span>
+        </a>
+        <div class="biz-item reveal">
+          <span class="biz-num">02</span>
+          <div><h3>The CreativeFlow App</h3><p>The app for content creators: idea capture, script writing, a planner, daily tasks and levels, with Adonis, your creative partner, built in. Every editing client gets it free.</p></div>
+          <span class="pill">Coming soon</span>
+        </div>
+        <div class="biz-item reveal">
+          <span class="biz-num">03</span>
+          <div><h3>Creactive</h3><p>A daily creativity training game. Flick keeps you company through short sessions across six creative skills, with a coach that asks questions instead of handing you answers.</p></div>
+          <span class="pill">In development</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="wrap work">
+      <div class="reveal">
+        <p class="label">Work with me</p>
+        <h2>Let's make something</h2>
+        <ul class="ways">
+          <li><b>Editing.</b> Long form, shorts and thumbnails for your channel.</li>
+          <li><b>Collabs.</b> Videos together across gaming, films or the main channel.</li>
+          <li><b>Brands.</b> Sponsorships and partnerships that fit what I make.</li>
+          <li><b>Anything else.</b> Ask. If it's creative, I'm probably in.</li>
+        </ul>
+        <p style="color:var(--muted);margin:0">I read every message myself and reply by email.</p>
+      </div>
+      <form id="contact" class="reveal" novalidate>
+        <label>Your name<input name="name" autocomplete="name" maxlength="100" required></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required></label>
+        <label>What's it about?
+          <select name="topic">
+            <option>Editing</option><option>Collab</option><option>Brand deal</option><option>Something else</option>
+          </select>
+        </label>
+        <label>Message<textarea name="message" maxlength="3800" required placeholder="Tell me about your channel or idea"></textarea></label>
+        <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+        <button class="btn" type="submit">Send message</button>
+        <p class="form-msg" id="formMsg" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="socials">
+    <a href="https://flyn.co/instarich" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://flyn.co/tiktokrich" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://flyn.co/xacc" target="_blank" rel="noopener">X</a>
+    <a href="https://discord.gg/AkTxFh4Zvh" target="_blank" rel="noopener">Discord</a>
+  </div>
+  <a href="../">All my links</a> · Made by Rich Malone
+</footer>
+
+<script>
+  // Sections fade in as they scroll into view.
+  (function () {
+    const items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { items.forEach(el => el.classList.add('in')); return; }
+    const io = new IntersectionObserver((entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.12 });
+    items.forEach(el => io.observe(el));
+  })();
+
+  // Contact form: lands in the Leads list in CreativeFlow HQ, like the form on creativeflow.media.
+  (function () {
+    const form = document.getElementById('contact'), msg = document.getElementById('formMsg');
+    const say = (text, kind) => { msg.textContent = text; msg.className = 'form-msg' + (kind ? ' ' + kind : ''); };
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = form.elements;
+      const name = f.name.value.trim(), email = f.email.value.trim(), text = f.message.value.trim();
+      if (!name || !text) return say('Add your name and a message.', 'err');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return say('That email doesn\'t look right.', 'err');
+      const btn = form.querySelector('button'); btn.disabled = true; say('Sending…');
+      try {
+        const res = await fetch('https://creativeflow-ai.netlify.app/api/lead', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, message: '[richmalone.site · ' + f.topic.value + '] ' + text, website: f.website.value })
+        });
+        if (res.ok) { form.reset(); say('Sent. I\'ll get back to you by email soon.', 'ok'); }
+        else if (res.status === 429) say('You\'ve sent a few today already. Try again tomorrow.', 'err');
+        else say('Couldn\'t send that. Try again in a minute.', 'err');
+      } catch (err) { say('Couldn\'t reach the server. Check your connection and try again.', 'err'); }
+      btn.disabled = false;
+    });
+  })();
+</script>
+</body>
+</html>
