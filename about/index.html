@@ -144,13 +144,18 @@
     background: var(--bg); border: 1.5px solid rgba(255, 255, 255, 0.25); z-index: 1; opacity: 0; }
   .scroll-link-dot.top { top: 0; } .scroll-link-dot.bottom { top: 100%; }
   .scroll-link-dot.lit { background: #5B7BFF; border-color: #5B7BFF; box-shadow: 0 0 10px rgba(91, 123, 255, 0.85); opacity: 1; }
-  section.block { position: relative; --line-progress: 0; background: var(--bg); }
-  section.block::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; z-index: 2; transform: scaleX(var(--line-progress, 0));
+  section.block { position: relative; --line-progress: 0; }
+  #story { background: linear-gradient(var(--bg), #0A0812); }
+  #channels { background: linear-gradient(#0A0812, #0F0B1C); }
+  #building { background: linear-gradient(#0F0B1C, #140F26); }
+  #work { background: linear-gradient(#140F26, #1A1331); }
+  body > footer { background: #1A1331; border-top-color: rgba(255, 255, 255, 0.06); }
+  #story::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; z-index: 2; transform: scaleX(var(--line-progress, 0));
     background: linear-gradient(90deg, transparent, #5B7BFF, var(--accent), transparent); box-shadow: 0 0 18px rgba(91, 123, 255, 0.65); }
   @media (prefers-reduced-motion: no-preference) {
     .scroll-link-fill { transition: height 0.08s linear; }
     .scroll-link-dot { transition: background 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, opacity 0.15s ease; }
-    section.block::after { transition: transform 0.08s linear; }
+    #story::after { transition: transform 0.08s linear; }
   }
 
   footer { padding: 46px 16px calc(46px + env(safe-area-inset-bottom)); text-align: center; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
@@ -204,7 +209,6 @@
     </div>
   </section>
 
-  <div class="scroll-link" aria-hidden="true"><div class="scroll-link-fill"></div><span class="scroll-link-dot top"></span><span class="scroll-link-dot bottom"></span></div>
   <section class="block" id="channels">
     <div class="wrap">
       <div class="reveal">
@@ -231,7 +235,6 @@
     </div>
   </section>
 
-  <div class="scroll-link" aria-hidden="true"><div class="scroll-link-fill"></div><span class="scroll-link-dot top"></span><span class="scroll-link-dot bottom"></span></div>
   <section class="block" id="building">
     <div class="wrap">
       <div class="reveal">
@@ -258,7 +261,6 @@
     </div>
   </section>
 
-  <div class="scroll-link" aria-hidden="true"><div class="scroll-link-fill"></div><span class="scroll-link-dot top"></span><span class="scroll-link-dot bottom"></span></div>
   <section class="block" id="work">
     <div class="wrap work">
       <div class="reveal">
